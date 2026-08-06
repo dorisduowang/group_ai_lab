@@ -1,18 +1,12 @@
-import { usePlayer, useGame } from "@empirica/core/player/classic/react";
+import { usePlayer } from "@empirica/core/player/classic/react";
 import React, { useState } from "react";
-import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
 
 export function ExpFeedback({ next }) {
-    const labelClassName = "block text-md font-bold text-gray-700 my-2";
-    const listClassName = "block text-md font-medium text-gray-700 my-2";
     const inputClassName =
         "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-empirica-500 focus:border-empirica-500 sm:text-sm";
     const player = usePlayer();
-    const game = useGame();
-    const { facilitation } = game.get("treatment");
 
-    // Define state variables for each question
     const [question1, setQuestion1] = useState("");
  
 

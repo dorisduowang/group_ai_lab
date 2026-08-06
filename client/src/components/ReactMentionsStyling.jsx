@@ -1,7 +1,3 @@
-import zIndex from "@mui/material/styles/zIndex.js";
-import { height } from "@mui/system";
-import { makeRegexClassGroup } from "unocss";
-
 export default {
     control: {
       backgroundColor: '#fff',

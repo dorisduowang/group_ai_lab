@@ -6,3 +6,12 @@
 archive/**
 TODO.md
 .empirica/empirica.toml
+data/osf-grail/
+data/twin2k-teams/
+runs/
+results/
+outputs/
+docs/IMPLEMENTATION_REPORT.md
+docs/LIVE_CLAUDE_PILOT.md
+__pycache__/
+*.py[cod]

@@ -1,0 +1,12 @@
+{
+  "name": "grail-independent-agent-runner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "run": "node src/cli.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

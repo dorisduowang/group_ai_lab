@@ -1,6 +1,5 @@
-import { usePlayer, useGame } from "@empirica/core/player/classic/react";
+import { usePlayer } from "@empirica/core/player/classic/react";
 import React, { useState } from "react";
-import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
 
 export function SubjectiveSurvey({ next }) {
@@ -9,26 +8,13 @@ export function SubjectiveSurvey({ next }) {
     const inputClassName =
         "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-empirica-500 focus:border-empirica-500 sm:text-sm";
     const player = usePlayer();
-    const game = useGame();
-    const { facilitation } = game.get("treatment");
-    const playerName = player.get("name");
 
-    // Define state variables for each question
     const [question1, setQuestion1] = useState("");
     const [question2, setQuestion2] = useState("");
     const [question3, setQuestion3] = useState("");
     const [question4, setQuestion4] = useState("");
     const [question5, setQuestion5] = useState("");
     const [question6, setQuestion6] = useState("");
-    const [question7, setQuestion7] = useState("");
-    const [question8, setQuestion8] = useState("");
-    const [question9, setQuestion9] = useState("");
-    const [question10, setQuestion10] = useState("");
-    const [question11, setQuestion11] = useState("");
-    const [question12, setQuestion12] = useState("");
-    const [question13, setQuestion13] = useState("");
-
-
     function handleSubmit(event) {
         event.preventDefault();
         player.set("subjectiveSurvey", {
@@ -38,14 +24,6 @@ export function SubjectiveSurvey({ next }) {
             groupProductive: question4,
             groupStructured: question5,
             groupCohesion: question6,
-            facilitatorRoleFreetext: question7,
-            facilitatorGroupFreetext: question8,
-            facilitatorSharing: question9,
-            facilitatorDistracting: question10,
-            facilitatorSynthesis: question11,
-            facilitatorFocus: question12,
-            facilitatorPreference: question13,
-
         });
         next();
     }
@@ -155,126 +133,6 @@ export function SubjectiveSurvey({ next }) {
                                     selectedOption={question6}
                                     onChange={(e) => setQuestion6(e.target.value)}
                                 />
-
-
-                                <div className="py-10"><hr className="border-gray-400 border-t-4" /></div>
-
-
-
-
-                                {(playerName == "Facilitator") && <>
-                                    <div>
-                                        <label htmlFor="question7" className={`${labelClassName}`}>
-                                            How did you feel about your role as the facilitator during the task? What went well? What could have gone better?
-                                        </label>
-                                        <div className="mt-1">
-                                            <textarea
-                                                id="question7"
-                                                name="question7"
-                                                type="text"
-                                                rows={4}
-                                                autoComplete="off"
-                                                className={inputClassName}
-                                                value={question7}
-                                                onChange={(e) => setQuestion7(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                </>}
-
-
-
-                                {(facilitation != "none" && playerName != "Facilitator") && <><div>
-                                    <label htmlFor="question8" className={`${labelClassName}`}>
-                                        How did you feel about the facilitator during the task?
-                                    </label>
-                                    <div className="mt-1">
-                                        <textarea
-                                            id="question8"
-                                            name="question8"
-                                            type="text"
-                                            rows={4}
-                                            autoComplete="off"
-                                            className={inputClassName}
-                                            value={question8}
-                                            onChange={(e) => setQuestion8(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-
-                                    <div className={labelClassName}>Please rate your agreement with the following statements:</div>
-                                    <div className="flex">
-                                        <label htmlFor="question9" className={`${listClassName} pt-15 w-4/10`}>
-                                            The facilitator encouraged the group to share information
-                                        </label>
-                                        <div className="w-6/10">
-                                            <LikertScale
-                                                selected={question9}
-                                                name="question9"
-                                                onChange={(e) => setQuestion9(e.target.value)}
-                                                showLabels={true}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <label htmlFor="question10" className={`${listClassName} w-4/10`}>
-                                            The facilitator was distracting
-                                        </label>
-                                        <div className="w-6/10">
-                                            <LikertScale
-                                                selected={question10}
-                                                name="question10"
-                                                onChange={(e) => setQuestion10(e.target.value)}
-                                                showLabels={false}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <label htmlFor="question11" className={`${listClassName} w-4/10`}>
-                                        The facilitator helped the group summarize the information shared to reach a decision
-                                        </label>
-                                        <div className="w-6/10">
-                                            <LikertScale
-                                                selected={question11}
-                                                name="question11"
-                                                onChange={(e) => setQuestion11(e.target.value)}
-                                                showLabels={false}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <label htmlFor="question12" className={`${listClassName} w-4/10`}>
-                                            The facilitator was able to keep the group focused on the task
-                                        </label>
-                                        <div className="w-6/10">
-                                            <LikertScale
-                                                selected={question12}
-                                                name="question12"
-                                                onChange={(e) => setQuestion12(e.target.value)}
-                                                showLabels={false}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    
-                                </>}
-
-                                {playerName != "Facilitator" && <>
-                                    <RadioGroup
-                                        question={`You completed this task ${facilitation == "none" ? "without a facilitator" : facilitation == "human" ? "with a human facilitator" : "with an AI facilitator"}. If you were to repeat this task, which would you prefer?`}
-                                        options={[
-                                            { value: "no", label: "No facilitator" },
-                                            { value: "human", label: "A human facilitator" },
-                                            { value: "ai", label: "An AI facilitator" },
-                                        ]}
-                                        selectedOption={question13}
-                                        onChange={(e) => setQuestion13(e.target.value)}
-                                    />
-                                </>}
-
                                 <div className="mb-12 text-right">
                                     <Button type="submit">Next</Button>
                                 </div>

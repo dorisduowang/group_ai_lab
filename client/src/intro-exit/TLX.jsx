@@ -1,6 +1,5 @@
-import { usePlayer, useGame } from "@empirica/core/player/classic/react";
+import { usePlayer } from "@empirica/core/player/classic/react";
 import React, { useState } from "react";
-import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
 
 export function TLX({ next }) {
@@ -9,10 +8,7 @@ export function TLX({ next }) {
     const inputClassName =
         "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-empirica-500 focus:border-empirica-500 sm:text-sm";
     const player = usePlayer();
-    const game = useGame();
-    const { facilitation } = game.get("treatment");
 
-    // Define state variables for each question
     const [question1, setQuestion1] = useState("");
     const [question2, setQuestion2] = useState("");
     const [question3, setQuestion3] = useState("");
@@ -34,7 +30,6 @@ export function TLX({ next }) {
         next();
     }
 
-    // Based on Hart and Staveland’s NASA Task Load Index (TLX): https://humansystems.arc.nasa.gov/groups/tlx/downloads/TLXScale.pdf
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg mt-10">
