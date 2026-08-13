@@ -30,7 +30,7 @@ export function Chat({
                 id: player.id,
                 name: player.get("name") || player.id,
                 hexCode: player.get("hexCode"),
-                avatar: player.get("name") != "Facilitator" ? `https://api.dicebear.com/8.x/identicon/svg?rowColor=${player.get("hexCode")}` : "https://api.dicebear.com/9.x/initials/svg?backgroundColor=000000&seed=F",
+                avatar: `https://api.dicebear.com/8.x/identicon/svg?rowColor=${player.get("hexCode")}`,
             },
         });
     };
@@ -57,9 +57,6 @@ function Messages(props) {
     const [msgCount, setMsgCount] = useState(0);
     const { hiddenInfoCue } = game.get("treatment");
 
-    // This first effect is to detect scrolling to the bottom.
-    // Depends on msgs.length so it re-runs when the scrollable div first mounts
-    // (msgs going from 0 to 1 swaps the empty state for the message list).
     useEffect(() => {
         const el = scroller.current;
         if (!el) return;
@@ -76,7 +73,6 @@ function Messages(props) {
     }, [msgs.length]);
 
 
-    // This effect is to manage auto-scrolling and alerting
     useEffect(() => {
         if (!scroller.current) {
             return;
@@ -204,22 +200,11 @@ function MessageComp({ attribute }) {
 function Input({ onNewMessage }) {
     const [text, setText] = useState("");
     const player = usePlayer();
-    const game = useGame();
-    const { facilitation } = game.get("treatment");
 
     const mentionUsers = usePlayers().map((player) => ({
         id: player.id,
         display: player.get("name"),
     }));
-
-    if (facilitation != "none" && facilitation != "human") {
-        mentionUsers.push({
-            id: "ai",
-            display: "Facilitator",
-        });
-    }
-
-
 
     const resize = (e) => {
         const target = e.target;
@@ -266,7 +251,6 @@ function Input({ onNewMessage }) {
             const { selectionStart } = e.target;
             const lastChar = text.slice(selectionStart - 1, selectionStart);
 
-            // If the last character is part of a mention (indicated by @), remove the entire mention
             if (lastChar === "@") {
                 const mentionStart = text.lastIndexOf(" ", selectionStart - 2);
                 const mentionEnd = text.indexOf(" ", selectionStart) + 1 || text.length;

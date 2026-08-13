@@ -1,6 +1,5 @@
 import { usePlayer, useGame } from "@empirica/core/player/classic/react";
 import React, { useState, useEffect, useRef } from "react";
-import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
 
 export function AttentionCheck({ previous, next }) {
@@ -9,9 +8,8 @@ export function AttentionCheck({ previous, next }) {
     "appearance-none block w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-empirica-500 focus:border-empirica-500 sm:text-sm";
   const player = usePlayer();
   const game = useGame();
-  const {facilitation, playerCount} = game.get("treatment"); 
+  const { playerCount } = game.get("treatment");
 
-  // Define state variables for each question
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [captcha, setCaptcha] = useState("");
@@ -198,6 +196,4 @@ export function Radio({ selected, name, value, label, onChange }) {
     </label>
   );
 }
-
-
 

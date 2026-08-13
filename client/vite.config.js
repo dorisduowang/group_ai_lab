@@ -12,7 +12,6 @@ const builtinsPlugin = {
   name: "rollup-plugin-polyfill-node",
 };
 
-// https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
     exclude: ["@empirica/tajriba", "@empirica/core"],
@@ -28,10 +27,7 @@ export default defineConfig({
       port: 8844,
     },
     fs: {
-      allow: [
-        // search up for workspace root
-        searchForWorkspaceRoot(process.cwd()),
-      ],
+      allow: [searchForWorkspaceRoot(process.cwd())],
     },
   },
   build: {
@@ -42,9 +38,6 @@ export default defineConfig({
       preserveEntrySignatures: "strict",
       plugins: [builtinsPlugin],
       external: ["pkg-types", "mlly", "local-pkg", "fs"],
-      output: {
-        sourcemap: true,
-      },
     },
   },
   clearScreen: false,

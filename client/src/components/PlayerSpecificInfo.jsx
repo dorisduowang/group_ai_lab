@@ -10,7 +10,6 @@ export function PlayerSpecificInfo() {
   const stage = useStage();
   const game = useGame();
   const playerContent = player.get("playerContent");
-  const playerName = player.get("name");
   const generalInfo = game.get("generalInfo");
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -22,11 +21,7 @@ export function PlayerSpecificInfo() {
     { label: `Personal report for ${player.get("name")}`, content: playerContent },
   ];
 
-  const facilitatorInfo = [
-    { label: `Facilitator Notes`, content: playerContent },
-  ];
-
-  const tabContent = playerName === "Facilitator" ? facilitatorInfo : playerSpecificInfo;
+  const tabContent = playerSpecificInfo;
 
   return (
     <Container maxWidth="lg" style={{

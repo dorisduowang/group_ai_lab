@@ -1,13 +1,10 @@
 import React from "react";
-import { usePlayers, usePlayer, useGame } from "@empirica/core/player/classic/react";
+import { usePlayers, usePlayer } from "@empirica/core/player/classic/react";
 import { Avatar } from "../components/Avatar";
 
 export function PlayerList() {
     const players = usePlayers();
     const focalPlayer = usePlayer();
-    const game = useGame();
-    const { facilitation } = game.get("treatment");
-
     return (
         <div style={styles.container}>
             <div style={styles.headerContainer}>
@@ -22,18 +19,6 @@ export function PlayerList() {
                         </div>
                     </div>
                 ))}
-                {facilitation != "none" && facilitation != "human" &&
-                    <div style={styles.playerCard}>
-                        <div style={styles.avatar}><img
-                            className="h-full w-full rounded-md shadow bg-white p-1"
-                            src= "https://api.dicebear.com/9.x/initials/svg?backgroundColor=000000&seed=F"
-                            alt="Avatar"
-                        /></div>
-                        <div style={styles.playerInfo}>
-                            <span style={styles.playerName}>Facilitator</span>
-                        </div>
-                    </div>
-                }
             </div>
         </div>
     );
